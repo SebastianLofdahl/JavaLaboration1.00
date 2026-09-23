@@ -25,12 +25,16 @@ public class Game {
             switch (choice) {
                 case "1" -> { //Om man väljer att spela så ska case 1 då skapa 2 spelare, slå tärningarna och
                     //visa resultatet
-                    Player playerOne = createPlayer(1);
-                    Player playerTwo = createPlayer(2);
-                    playRound(playerOne);
-                    playRound(playerTwo);
-                    printResult(playerOne, playerTwo);
-                    wantToPlayMore();
+                    boolean playAgain = true;
+                    while (playAgain) {
+                        Player playerOne = createPlayer(1);
+                        Player playerTwo = createPlayer(2);
+                        playRound(playerOne);
+                        playRound(playerTwo);
+                        printResult(playerOne, playerTwo);
+                        playAgain = wantToPlayMore();
+                    }
+                    inMenu = false;
                 }
                 case "2" -> //Förklarar regler, bara en iop för detta
                         IO.println("Varje spelare slår tärningen två gånger på rad, sedan räknas summorna ihop och högsta resultat vinner.");
@@ -76,6 +80,8 @@ public class Game {
             int roll = Dice.roll();
             IO.println("Slag " + i + ": " + roll);
             player.addToScore(roll);
+            IO.readln("Vil du fortsätta spela? y/n: ");
+
         }
     }
 
@@ -103,8 +109,6 @@ public class Game {
         //"ja" att starta case 1 och "nej" att starta case 2
 
         String answer = IO.readln("Vill du spela igen? Ja/Nej: ").trim().toLowerCase();
-        if (answer.equals("nej")) {
-        }
         return answer.equals("ja");
     }
 
