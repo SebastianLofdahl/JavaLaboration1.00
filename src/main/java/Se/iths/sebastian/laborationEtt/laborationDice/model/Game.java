@@ -30,6 +30,7 @@ public class Game {
                     playRound(playerOne);
                     playRound(playerTwo);
                     printResult(playerOne, playerTwo);
+                    wantToPlayMore();
                 }
                 case "2" -> //Förklarar regler, bara en iop för detta
                         IO.println("Varje spelare slår tärningen två gånger på rad, sedan räknas summorna ihop och högsta resultat vinner.");
@@ -98,9 +99,12 @@ public class Game {
         //Metoden för att få input från användare om de vill spela igen, med en safe i form av .trim().toLowerCase();
         //Har inte fått med denna i själva koden och vet inte riktigt hur, det blev fel när jag skrev in menyn
         //och vet inte hur jag fixar det helt, försökte skriva in den i Play men vet inte hur
-        //jag får den att starta menyn igen
+        //jag får den att starta menyn igen, edit kan få den att starta menyn men vet inte hur jag får
+        //"ja" att starta case 1 och "nej" att starta case 2
 
         String answer = IO.readln("Vill du spela igen? Ja/Nej: ").trim().toLowerCase();
+        if (answer.equals("nej")) {
+        }
         return answer.equals("ja");
     }
 
